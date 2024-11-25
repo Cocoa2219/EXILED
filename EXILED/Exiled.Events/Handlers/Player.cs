@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------
-// <copyright file="Player.cs" company="Exiled Team">
-// Copyright (c) Exiled Team. All rights reserved.
+// <copyright file="Player.cs" company="ExMod Team">
+// Copyright (c) ExMod Team. All rights reserved.
 // Licensed under the CC BY-SA 3.0 license.
 // </copyright>
 // -----------------------------------------------------------------------
@@ -238,6 +238,11 @@ namespace Exiled.Events.Handlers
         /// Invoked before a <see cref="API.Features.Player"/> escapes.
         /// </summary>
         public static Event<EscapingEventArgs> Escaping { get; set; } = new();
+
+        /// <summary>
+        /// Invoked after a <see cref="API.Features.Player"/> escapes.
+        /// </summary>
+        public static Event<EscapedEventArgs> Escaped { get; set; } = new();
 
         /// <summary>
         /// Invoked before a <see cref="API.Features.Player"/> begins speaking to the intercom.
@@ -733,6 +738,12 @@ namespace Exiled.Events.Handlers
         /// </summary>
         /// <param name="ev">The <see cref="EscapingEventArgs"/> instance.</param>
         public static void OnEscaping(EscapingEventArgs ev) => Escaping.InvokeSafely(ev);
+
+        /// <summary>
+        /// Called after a <see cref="API.Features.Player"/> escapes.
+        /// </summary>
+        /// <param name="ev">The <see cref="EscapedEventArgs"/> instance.</param>
+        public static void OnEscaped(EscapedEventArgs ev) => Escaped.InvokeSafely(ev);
 
         /// <summary>
         /// Called before a <see cref="API.Features.Player"/> begins speaking to the intercom.
